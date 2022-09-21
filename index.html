@@ -14,22 +14,24 @@
     <header class="row">
         <h1 class="col-12 bg-primary text-white">Weather Dashboard</h1>
     </header>
-    <main class="">
-        <section id="seachArea" class="col-3">
-            <!-- This is were the search area will go to look up your city + where previous cities will display. Needs a form. -->
-            <h2>Search for a city:</h2>
-            <form action="GET">
-                <input type="text" id="citySearch" name="citySearch">
-            </form>
-            <button type="button">Search</button>
-        </section>
-        <hr>
-        <section id="prevSearch">
-            <!-- This is where the previously searched cities will go. They will need to be buttons that search for a specific city on click. -->
-            <h4>Previously searched:</h4>
-            <div div="pastCities">
-            </div>
-        </section>
+    <main>
+        <div class="row flex-column">
+            <section id="seachArea" class="col-3">
+                <!-- This is were the search area will go to look up your city + where previous cities will display. Needs a form. -->
+                <h2>Search for a city:</h2>
+                <form action="GET">
+                    <input type="text" id="citySearch" name="citySearch">
+                </form>
+                <button type="button" id="seachBtn">Search</button>
+            </section>
+            <hr>
+            <section id="prevSearch" class="col-7">
+                <!-- This is where the previously searched cities will go. They will need to be buttons that search for a specific city on click. -->
+                <h4>Previously searched:</h4>
+                <div div="pastCities">
+                </div>
+            </section>
+        </div>
         <section id="cityOverview" class="border">
             <!-- This is where the city overview will go -->
             <h3 class="currentCity">CITY NAME GOES HERE</h3> <!-- Need to add a weather icon after the name -->
@@ -91,5 +93,7 @@
 
         </section>
     </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
