@@ -1,0 +1,36 @@
+main {
+    margin: 10px 20px;
+}
+
+/* Search section */
+#searchArea {
+    border-right: solid black 2px;
+}
+
+
+/* Previously seached section */
+.prevCity, #searchBtn {
+    margin: 5px;
+    background: rgb(255, 227, 157);
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    border: none;
+    padding: 5px 20px;
+}
+
+.prevCity:hover, #searchBtn:hover {
+    background: rgb(255, 215, 95);
+}
+
+
+/* Current city info section */
+#cityOverview {
+    border: solid black 2px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* 5 day section */
+.card {
+    border: solid black 2px;
+}

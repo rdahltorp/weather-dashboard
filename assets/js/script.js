@@ -3,7 +3,7 @@
 //4) make it pretty
 
 //Global vars
-var citySearchBtn = document.querySelector("#seachBtn");
+var citySearchBtn = document.querySelector("#searchBtn");
 var userSearch = document.getElementById('citySearch');
 var pastSearch = [];
 var search = "";
@@ -14,7 +14,7 @@ function getData() {
     
     if(userSearch.value) {
         search = userSearch.value;
-    } 
+    }
 
     //Current weather data pull
     var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + search + "&units=imperial&appid=ad8f1f0503e0381c15618312183fcbd8";
@@ -154,9 +154,11 @@ function getData() {
       })
 
       .then (function saveSearch() {
-        pastSearch.push(userSearch.value);
-        console.log(pastSearch);
-        localStorage.setItem("prevSearch", JSON.stringify(pastSearch));
+        if (userSearch.value){
+            pastSearch.push(userSearch.value);
+            console.log(pastSearch);
+            localStorage.setItem("prevSearch", JSON.stringify(pastSearch));
+        }
       });
     });
 
@@ -170,20 +172,22 @@ function init() {
     var saved = JSON.parse(localStorage.getItem("prevSearch"));
     console.log(saved);
     for(var i = 0; i < saved.length; i++) {
-        $(".pastCities").append("<p>" + saved[i] + "</p>");
-        $(".pastCities").children().attr("class", "prevCity");
-    };
+        let searchHistoryBtn = document.createElement("button");
+        searchHistoryBtn.value = saved[i];
+        searchHistoryBtn.classList.add("prevCity");
+        searchHistoryBtn.textContent = saved[i];
+        $('.pastCities').append(searchHistoryBtn)
+
+        //Adds event listener to search previous cities
+        searchHistoryBtn.addEventListener("click", function (event) {
+            var btn = event.target;
+            var searchCity = btn.getAttribute('value')
+            console.log(searchCity);
+            search = searchCity;
+            console.log(search);
+            getData();
+        });
+    }
 };
 init();
 
-//Declares stored cities as variables after creation
-var prevCityBtn = document.getElementsByClassName("prevCity");
-
-//Makes stored cities buttons and trigger a search based on value
-prevCityBtn.addEventListener("click", function(event){
-    var prevCityName = $(event.target).closest("p").val();
-    console.log(prevCityName);
-//  //search = prevCityBtn.value;
-//  //console.log(search);
-//  //getData();
-});
