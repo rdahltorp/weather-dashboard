@@ -29,11 +29,8 @@ function getData() {
         console.log(info.dt);
     
     //5 day forecast data pull
-    var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + info.coord.lat + "&lon=" + info.coord.lon + "&units=imperial&appid=ad8f1f0503e0381c15618312183fcbd8"
-    //console.log(fiveDayURL)
-    //var fiveDayURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.city.coord.lat + "&lon=" + data.city.coord.lon + "&appid=ad8f1f0503e0381c15618312183fcbd8"
-
-
+    var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + info.coord.lat + "&lon=" + info.coord.lon + "&units=imperial&appid=ad8f1f0503e0381c15618312183fcbd8";
+    
     fetch(fiveDayURL)
       .then(function (response) {
         return response.json()
@@ -70,83 +67,89 @@ function getData() {
 
         //Day 1 Card
         var dayOneDate = document.querySelector(".dayOneTitle");
-        dayOneDate.innerHTML = data.list[4].dt_txt.substring(0, 10); //Need to change to a more legible date via moment.
+        dayOneDate.innerHTML = data.list[2].dt_txt.substring(0, 10); //Need to change to a more legible date via moment.
         
-        var dayOneIcon = document.querySelector(".dayOneIcon");
-        dayOneIcon.innerHTML = data.list[4].weather[0].icon; //Need to figure out how to add the icon set.
-        
+        var dayOneIconCode = data.list[2].weather[0].icon;
+        var dayOneIconURL = "http://openweathermap.org/img/w/" + dayOneIconCode + ".png"
+        $('#dOneIcon').attr('src', dayOneIconURL);
+
         var dayOneTemp = document.querySelector(".dayOneTemp");        
-        dayOneTemp.innerHTML = "Temp: " + data.list[4].main.temp + "°F";
+        dayOneTemp.innerHTML = "Temp: " + data.list[2].main.temp + "°F";
 
         var dayOneWind = document.querySelector(".dayOneWind");
-        dayOneWind.innerHTML = "Wind: " + data.list[4].wind.speed + "mph";
+        dayOneWind.innerHTML = "Wind: " + data.list[2].wind.speed + "mph";
         
         var dayOneHum = document.querySelector(".dayOneHum");
-        dayOneHum.innerHTML = "Humidity: " + data.list[4].main.humidity + "%";
+        dayOneHum.innerHTML = "Humidity: " + data.list[2].main.humidity + "%";
 
         //Day 2 Card
         var dayTwoDate = document.querySelector(".dayTwoTitle");
-        dayTwoDate.innerHTML = data.list[12].dt_txt.substring(0, 10) //Need to change to a more legible date via moment.
+        dayTwoDate.innerHTML = data.list[10].dt_txt.substring(0, 10) //Need to change to a more legible date via moment.
         
-        var dayTwoIcon = document.querySelector(".dayTwoIcon");
-        dayTwoIcon.innerHTML = data.list[12].weather[0].icon //Need to figure out how to add the icon set.
-        
+        var dayTwoIconCode = data.list[10].weather[0].icon;
+        var dayTwoIconURL = "http://openweathermap.org/img/w/" + dayTwoIconCode + ".png"
+        $('#dTwoIcon').attr('src', dayTwoIconURL);
+
+
         var dayTwoTemp = document.querySelector(".dayTwoTemp");        
-        dayTwoTemp.innerHTML = "Temp: " + data.list[12].main.temp + "°F";
+        dayTwoTemp.innerHTML = "Temp: " + data.list[10].main.temp + "°F";
 
         var dayTwoWind = document.querySelector(".dayTwoWind");
-        dayTwoWind.innerHTML = "Wind: " + data.list[12].wind.speed + "mph";
+        dayTwoWind.innerHTML = "Wind: " + data.list[10].wind.speed + "mph";
         
         var dayTwoHum = document.querySelector(".dayTwoHum");
-        dayTwoHum.innerHTML = "Humidity: " + data.list[12].main.humidity + "%";
+        dayTwoHum.innerHTML = "Humidity: " + data.list[10].main.humidity + "%";
 
         //Day 3 Card
         var dayThreeDate = document.querySelector(".dayThreeTitle");
-        dayThreeDate.innerHTML = data.list[20].dt_txt.substring(0, 10); //Need to change to a more legible date via moment.
+        dayThreeDate.innerHTML = data.list[18].dt_txt.substring(0, 10); //Need to change to a more legible date via moment.
         
-        var dayThreeIcon = document.querySelector(".dayThreeIcon");
-        dayThreeIcon.innerHTML = data.list[20].weather[0].icon; //Need to figure out how to add the icon set.
-        
+        var dayThreeIconCode = data.list[18].weather[0].icon;
+        var dayThreeIconURL = "http://openweathermap.org/img/w/" + dayThreeIconCode + ".png"
+        $('#dThreeIcon').attr('src', dayThreeIconURL);
+
         var dayThreeTemp = document.querySelector(".dayThreeTemp");        
-        dayThreeTemp.innerHTML = "Temp: " + data.list[20].main.temp + "°F";
+        dayThreeTemp.innerHTML = "Temp: " + data.list[18].main.temp + "°F";
 
         var dayThreeWind = document.querySelector(".dayThreeWind");
-        dayThreeWind.innerHTML = "Wind: " + data.list[20].wind.speed + "mph";
+        dayThreeWind.innerHTML = "Wind: " + data.list[18].wind.speed + "mph";
         
         var dayThreeHum = document.querySelector(".dayThreeHum");
-        dayThreeHum.innerHTML = "Humidity: " + data.list[20].main.humidity + "%";
+        dayThreeHum.innerHTML = "Humidity: " + data.list[18].main.humidity + "%";
 
         //Day 4 Card
         var dayFourDate = document.querySelector(".dayFourTitle");
-        dayFourDate.innerHTML = data.list[28].dt_txt.substring(0, 10); //Need to change to a more legible date via moment.
+        dayFourDate.innerHTML = data.list[26].dt_txt.substring(0, 10); //Need to change to a more legible date via moment.
         
-        var dayFourIcon = document.querySelector(".dayFourIcon");
-        dayFourIcon.innerHTML = data.list[28].weather[0].icon; //Need to figure out how to add the icon set.
-        
+        var dayFourIconCode = data.list[26].weather[0].icon;
+        var dayFourIconURL = "http://openweathermap.org/img/w/" + dayFourIconCode + ".png"
+        $('#dFourIcon').attr('src', dayFourIconURL);
+
         var dayFourTemp = document.querySelector(".dayFourTemp");        
-        dayFourTemp.innerHTML = "Temp: " + data.list[28].main.temp + "°F";
+        dayFourTemp.innerHTML = "Temp: " + data.list[26].main.temp + "°F";
 
         var dayFourWind = document.querySelector(".dayFourWind");
-        dayFourWind.innerHTML = "Wind: " + data.list[28].wind.speed + "mph";
+        dayFourWind.innerHTML = "Wind: " + data.list[26].wind.speed + "mph";
         
         var dayFourHum = document.querySelector(".dayFourHum");
-        dayFourHum.innerHTML = "Humidity: " + data.list[28].main.humidity + "%";
+        dayFourHum.innerHTML = "Humidity: " + data.list[26].main.humidity + "%";
 
         //Day 5 Card
         var dayFiveDate = document.querySelector(".dayFiveTitle");
-        dayFiveDate.innerHTML = data.list[36].dt_txt.substring(0, 10); //Need to change to a more legible date via moment.
+        dayFiveDate.innerHTML = data.list[34].dt_txt.substring(0, 10); //Need to change to a more legible date via moment.
         
-        var dayFiveIcon = document.querySelector(".dayFiveIcon");
-        dayFiveIcon.innerHTML = data.list[36].weather[0].icon; //Need to figure out how to add the icon set.
-        
+        var dayFiveIconCode = data.list[34].weather[0].icon;
+        var dayFiveIconURL = "http://openweathermap.org/img/w/" + dayFiveIconCode + ".png"
+        $('#dFiveIcon').attr('src', dayFiveIconURL);
+
         var dayFiveTemp = document.querySelector(".dayFiveTemp");        
-        dayFiveTemp.innerHTML = "Temp: " + data.list[36].main.temp + "°F";
+        dayFiveTemp.innerHTML = "Temp: " + data.list[34].main.temp + "°F";
 
         var dayFiveWind = document.querySelector(".dayFiveWind");
-        dayFiveWind.innerHTML = "Wind: " + data.list[36].wind.speed + "mph";
+        dayFiveWind.innerHTML = "Wind: " + data.list[34].wind.speed + "mph";
         
         var dayFiveHum = document.querySelector(".dayFiveHum");
-        dayFiveHum.innerHTML = "Humidity: " + data.list[36].main.humidity + "%";
+        dayFiveHum.innerHTML = "Humidity: " + data.list[34].main.humidity + "%";
 
 
       })
