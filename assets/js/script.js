@@ -1,21 +1,20 @@
 //What needs to happen next: 
-//2) Add icon for each day section
 //3) set up my recall of local storage + style the stored items. 
 //4) make it pretty
 
-//City Search Submissions
+//Global vars
 var citySearchBtn = document.querySelector("#seachBtn");
 var userSearch = document.getElementById('citySearch');
-var pastSearch = []
-var search = ""
+var pastSearch = [];
+var search = "";
 
-
+//Function to call APIs and place data in corrisponding HTML
 function getData() {
     console.log(userSearch.value);
     
     if(userSearch.value) {
-        search = userSearch.value
-    } //Add else here that activates should a click happen. 
+        search = userSearch.value;
+    } 
 
     //Current weather data pull
     var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + search + "&units=imperial&appid=ad8f1f0503e0381c15618312183fcbd8";
@@ -33,21 +32,21 @@ function getData() {
     
     fetch(fiveDayURL)
       .then(function (response) {
-        return response.json()
+        return response.json();
       })
       .then(function (data) {
-        console.log(data)
+        console.log(data);
       
 
         //Code below inserts pulled data for current info
         //Sets city name and date
         var cityNameAndDate = document.querySelector(".currentCity");
-        var date = moment(info.dt, "X").format("YYYY-MM-DD")
+        var date = moment(info.dt, "X").format("YYYY-MM-DD");
         cityNameAndDate.innerHTML = info.name + " (" + date + ")"; 
         
         //Sets icon
-        var currentIconCode = info.weather[0].icon
-        var currentIconURL = "http://openweathermap.org/img/w/" + currentIconCode + ".png"
+        var currentIconCode = info.weather[0].icon;
+        var currentIconURL = "http://openweathermap.org/img/w/" + currentIconCode + ".png";
         $('#wicon').attr('src', currentIconURL);
 
         //Sets current temp
@@ -67,10 +66,10 @@ function getData() {
 
         //Day 1 Card
         var dayOneDate = document.querySelector(".dayOneTitle");
-        dayOneDate.innerHTML = data.list[2].dt_txt.substring(0, 10); //Need to change to a more legible date via moment.
+        dayOneDate.innerHTML = data.list[2].dt_txt.substring(0, 10);
         
         var dayOneIconCode = data.list[2].weather[0].icon;
-        var dayOneIconURL = "http://openweathermap.org/img/w/" + dayOneIconCode + ".png"
+        var dayOneIconURL = "http://openweathermap.org/img/w/" + dayOneIconCode + ".png";
         $('#dOneIcon').attr('src', dayOneIconURL);
 
         var dayOneTemp = document.querySelector(".dayOneTemp");        
@@ -84,10 +83,10 @@ function getData() {
 
         //Day 2 Card
         var dayTwoDate = document.querySelector(".dayTwoTitle");
-        dayTwoDate.innerHTML = data.list[10].dt_txt.substring(0, 10) //Need to change to a more legible date via moment.
+        dayTwoDate.innerHTML = data.list[10].dt_txt.substring(0, 10); 
         
         var dayTwoIconCode = data.list[10].weather[0].icon;
-        var dayTwoIconURL = "http://openweathermap.org/img/w/" + dayTwoIconCode + ".png"
+        var dayTwoIconURL = "http://openweathermap.org/img/w/" + dayTwoIconCode + ".png";
         $('#dTwoIcon').attr('src', dayTwoIconURL);
 
 
@@ -102,10 +101,10 @@ function getData() {
 
         //Day 3 Card
         var dayThreeDate = document.querySelector(".dayThreeTitle");
-        dayThreeDate.innerHTML = data.list[18].dt_txt.substring(0, 10); //Need to change to a more legible date via moment.
+        dayThreeDate.innerHTML = data.list[18].dt_txt.substring(0, 10); 
         
         var dayThreeIconCode = data.list[18].weather[0].icon;
-        var dayThreeIconURL = "http://openweathermap.org/img/w/" + dayThreeIconCode + ".png"
+        var dayThreeIconURL = "http://openweathermap.org/img/w/" + dayThreeIconCode + ".png";
         $('#dThreeIcon').attr('src', dayThreeIconURL);
 
         var dayThreeTemp = document.querySelector(".dayThreeTemp");        
@@ -119,10 +118,10 @@ function getData() {
 
         //Day 4 Card
         var dayFourDate = document.querySelector(".dayFourTitle");
-        dayFourDate.innerHTML = data.list[26].dt_txt.substring(0, 10); //Need to change to a more legible date via moment.
+        dayFourDate.innerHTML = data.list[26].dt_txt.substring(0, 10); 
         
         var dayFourIconCode = data.list[26].weather[0].icon;
-        var dayFourIconURL = "http://openweathermap.org/img/w/" + dayFourIconCode + ".png"
+        var dayFourIconURL = "http://openweathermap.org/img/w/" + dayFourIconCode + ".png";
         $('#dFourIcon').attr('src', dayFourIconURL);
 
         var dayFourTemp = document.querySelector(".dayFourTemp");        
@@ -136,10 +135,10 @@ function getData() {
 
         //Day 5 Card
         var dayFiveDate = document.querySelector(".dayFiveTitle");
-        dayFiveDate.innerHTML = data.list[34].dt_txt.substring(0, 10); //Need to change to a more legible date via moment.
+        dayFiveDate.innerHTML = data.list[34].dt_txt.substring(0, 10); 
         
         var dayFiveIconCode = data.list[34].weather[0].icon;
-        var dayFiveIconURL = "http://openweathermap.org/img/w/" + dayFiveIconCode + ".png"
+        var dayFiveIconURL = "http://openweathermap.org/img/w/" + dayFiveIconCode + ".png";
         $('#dFiveIcon').attr('src', dayFiveIconURL);
 
         var dayFiveTemp = document.querySelector(".dayFiveTemp");        
@@ -155,23 +154,36 @@ function getData() {
       })
 
       .then (function saveSearch() {
-        pastSearch.push(userSearch.value)
+        pastSearch.push(userSearch.value);
         console.log(pastSearch);
-        localStorage.setItem("prevSearch", JSON.stringify(pastSearch))
-      })
-    })
+        localStorage.setItem("prevSearch", JSON.stringify(pastSearch));
+      });
+    });
 
-  }
+  };
 
 //Code for seach button
 citySearchBtn.addEventListener("click", getData)
 
+//Fuction to call localstorage and append previous searches
 function init() {
-    var saved = JSON.parse(localStorage.getItem("prevSearch"))
-    console.log(saved)
+    var saved = JSON.parse(localStorage.getItem("prevSearch"));
+    console.log(saved);
     for(var i = 0; i < saved.length; i++) {
+        $(".pastCities").append("<p>" + saved[i] + "</p>");
+        $(".pastCities").children().attr("class", "prevCity");
+    };
+};
+init();
 
-    }
-}
+//Declares stored cities as variables after creation
+var prevCityBtn = document.getElementsByClassName("prevCity");
 
-init()
+//Makes stored cities buttons and trigger a search based on value
+prevCityBtn.addEventListener("click", function(event){
+    var prevCityName = $(event.target).closest("p").val();
+    console.log(prevCityName);
+//  //search = prevCityBtn.value;
+//  //console.log(search);
+//  //getData();
+});
