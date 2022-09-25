@@ -12,10 +12,10 @@
 </head>
 <body>
     <header class="row">
-        <h1 class="col-12 bg-primary text-white">Weather Dashboard</h1>
+        <h1 class="col-12 text-white">Weather Dashboard</h1>
     </header>
     <main>
-        <div class="row d-flex justify-content-around">
+        <div class="row d-flex justify-content-around align-items-baseline">
             <section id="seachArea" class="col-4">
                 <!-- This is were the search area will go to look up your city + where previous cities will display. Needs a form. -->
                 <h2>Search for a city:</h2>
@@ -24,16 +24,15 @@
                 </form>
                 <button type="button" id="searchBtn">Search</button>
             </section>
-            <hr>
-            <section id="prevSearch" class="col-7">
+            <section id="prevSearch" class="col-6">
                 <!-- This is where the previously searched cities will go. They will need to be buttons that search for a specific city on click. -->
                 <h4>Previously searched:</h4>
                 <div class="pastCities">
                 </div>
             </section>
         </div>
-        <div class="row">
-            <section id="cityOverview" class="col-12">
+        <div class="row justify-content-center">
+            <section id="cityOverview" class="col-10">
                 <!-- This is where the city overview will go -->
                 <h3 class="currentCity"></h3> <!-- Need to add a weather icon after the name -->
                 <i class="currentDayIcon"><img id="wicon" src="" alt="Weather icon"></i>
@@ -41,7 +40,7 @@
                 <p class="currentCityWind">Wind:</p>
                 <p class="currentCityHum">Humidity:</p>
             </section>
-            <section class="5Day">
+            <section id="fiveDay">
                 <h4>5-day forecast:</h4>
                 <div class="row d-flex justify-content-around">
                     <div class="card col-2">

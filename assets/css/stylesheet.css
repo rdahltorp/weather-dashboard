@@ -2,6 +2,15 @@ main {
     margin: 10px 20px;
 }
 
+header {
+    background: rgb(53, 153, 253);
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
 /* Search section */
 #searchArea {
     border-right: solid black 2px;
@@ -31,6 +40,9 @@ main {
 }
 
 /* 5 day section */
-.card {
+.card, #cityOverview {
     border: solid black 2px;
+    border-radius: 5px;
+    color: white;
+    background: rgb(53, 153, 253);
 }

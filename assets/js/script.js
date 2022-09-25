@@ -1,16 +1,22 @@
-//What needs to happen next: 
-//3) set up my recall of local storage + style the stored items. 
-//4) make it pretty
-
 //Global vars
 var citySearchBtn = document.querySelector("#searchBtn");
 var userSearch = document.getElementById('citySearch');
 var pastSearch = [];
 var search = "";
 
+//Hiding isnt working.
+function hideElements() {
+    document.getElementById("fiveDay").hidden = true
+    document.getElementById("cityOverview").hidden = true
+}
+hideElements()
+
+
 //Function to call APIs and place data in corrisponding HTML
 function getData() {
     console.log(userSearch.value);
+    document.getElementById("fiveDay").hidden = false
+    document.getElementById("cityOverview").hidden = false
     
     if(userSearch.value) {
         search = userSearch.value;
@@ -159,6 +165,10 @@ function getData() {
             console.log(pastSearch);
             localStorage.setItem("prevSearch", JSON.stringify(pastSearch));
         }
+      })
+      
+      .then (function () {
+        document.getElementById("citySearch").value = ""
       });
     });
 
