@@ -4,7 +4,7 @@ var userSearch = document.getElementById('citySearch');
 var pastSearch = [];
 var search = "";
 
-//Hiding isnt working.
+//Hides empty weather elements
 function hideElements() {
     document.getElementById("fiveDay").hidden = true
     document.getElementById("cityOverview").hidden = true
@@ -14,7 +14,7 @@ hideElements()
 
 //Function to call APIs and place data in corrisponding HTML
 function getData() {
-    console.log(userSearch.value);
+    //Adds back in weather elements when city has been searched
     document.getElementById("fiveDay").hidden = false
     document.getElementById("cityOverview").hidden = false
     
@@ -159,6 +159,7 @@ function getData() {
 
       })
 
+      //Saves seaches to local storage
       .then (function saveSearch() {
         if (userSearch.value){
             pastSearch.push(userSearch.value);
@@ -167,6 +168,7 @@ function getData() {
         }
       })
       
+      //Clears search field after logging to local storage
       .then (function () {
         document.getElementById("citySearch").value = ""
       });

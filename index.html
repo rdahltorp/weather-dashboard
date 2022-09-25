@@ -17,7 +17,6 @@
     <main>
         <div class="row d-flex justify-content-around align-items-baseline">
             <section id="seachArea" class="col-4">
-                <!-- This is were the search area will go to look up your city + where previous cities will display. Needs a form. -->
                 <h2>Search for a city:</h2>
                 <form action="GET">
                     <input type="text" id="citySearch" name="citySearch">
@@ -25,16 +24,15 @@
                 <button type="button" id="searchBtn">Search</button>
             </section>
             <section id="prevSearch" class="col-6">
-                <!-- This is where the previously searched cities will go. They will need to be buttons that search for a specific city on click. -->
                 <h4>Previously searched:</h4>
                 <div class="pastCities">
+                    <!-- This is where the previously searched cities go. -->
                 </div>
             </section>
         </div>
         <div class="row justify-content-center">
             <section id="cityOverview" class="col-10">
-                <!-- This is where the city overview will go -->
-                <h3 class="currentCity"></h3> <!-- Need to add a weather icon after the name -->
+                <h3 class="currentCity"></h3> 
                 <i class="currentDayIcon"><img id="wicon" src="" alt="Weather icon"></i>
                 <p class="currentCityTemp">Temp:</p>
                 <p class="currentCityWind">Wind:</p>
